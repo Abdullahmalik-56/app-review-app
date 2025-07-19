@@ -1,0 +1,68 @@
+myCricket : com.mizmowireless.acctmgt
+Cricket League : com.miniclip.cricketleague
+CREX - Just Cricket : in.cricketexchange.app.cricketexchange
+Real Cricket™ 24 : com.nautilus.realcricket
+tryCricket by Cricket Wireless : com.cricketwireless.trycricket
+Real Cricket™ 20 : com.nautilus.RealCricket3D
+ESPNcricinfo - Live Cricket : com.july.cricinfo
+Hitwicket Cricket Game 2025 : cricketgames.hitwicket.strategy
+Cricbuzz - Live Cricket Scores : com.cricbuzz.android
+World Cricket Championship 3 : com.nextwave.wcc3
+CricHeroes-Cricket Scoring App : com.cricheroes.cricheroes.alpha
+Cricket Visual Voicemail : com.mizmowireless.vvm
+myPhotoVault : com.asurion.android.mediabackup.vault.cricket
+CrickPro - Cricket Scoring App : com.crickpro
+Wicket Cricket Manager : com.playt20manager
+Cricket Captain 2025 : uk.co.childishthings.cricketcaptain2025
+Cricket Partner Tab : com.cricketwireless.minus
+World Cricket Championship 2 : com.nextwave.wcc2
+myExpert : com.cricketwireless.expert
+RR Cricket Academy : com.rra
+ICC Official : com.pl.cwc_2015
+Cricket Line Guru : com.app.cricketapp
+The Cricket Draft : com.thecricketdraft
+England Cricket : com.othermedia.EcbCricket
+SportsTiger Live Score & News : com.sportstigeratoz
+Sri Lanka Cricket : com.iwd.hadrianhiatus.slcb_app
+CricRocket: Live Cricket Score : cricket.live.line
+Stick Cricket Super League : com.sticksports.spl2
+Real Cricket Swipe : com.nautilus.realcricketchampionship
+Sachin Saga Pro Cricket Games : sachin.cricket.game
+Real Cricket™ 20 : com.nautilus.RealCricket3D
+World Cricket Championship 2 : com.nextwave.wcc2
+World Cricket Championship 3 : com.nextwave.wcc3
+Sachin Saga Pro Cricket Games : sachin.cricket.game
+Real Cricket™ 24 : com.nautilus.realcricket
+Real Cricket Swipe : com.nautilus.realcricketchampionship
+T20 Cricket Champions 3D : com.zapak.worldcup.t20.cricket
+Wicket Cricket Manager : com.playt20manager
+Real Cricket™ Premier League : com.nautilus.RealCricketPremierLeague
+World Cricket Premier League : com.zapak.world.cricket.premier.league.real.t20.champions
+Cricket Manager - Super League : com.playwicketcricket.superleague
+Cricket Captain 2025 : uk.co.childishthings.cricketcaptain2025
+Sachin Saga Cricket Champions : com.jetplay.sachinsagacc
+Hitwicket Cricket Game 2025 : cricketgames.hitwicket.strategy
+Real Cricket™ 20 : com.nautilus.RealCricket3D
+World Cricket Championship 3 : com.nextwave.wcc3
+Real Cricket™ 24 : com.nautilus.realcricket
+World Cricket Championship 2 : com.nextwave.wcc2
+Sachin Saga Pro Cricket Games : sachin.cricket.game
+Real Cricket Swipe : com.nautilus.realcricketchampionship
+Wicket Cricket Manager : com.playt20manager
+Stick Cricket Clash : com.sticksports.stickcricketclash
+New Star Cricket : uk.fiveaces.newstarcricket
+Cricket Captain 2025 : uk.co.childishthings.cricketcaptain2025
+Cricket League : com.miniclip.cricketleague
+Sachin Saga Cricket Champions : com.jetplay.sachinsagacc
+Real Cricket™ Premier League : com.nautilus.RealCricketPremierLeague
+Stick Cricket Super League : com.sticksports.spl2
+Cricket Manager - Super League : com.playwicketcricket.superleague
+Hitwicket Cricket Game 2025 : cricketgames.hitwicket.strategy
+T20 Cricket Champions 3D : com.zapak.worldcup.t20.cricket
+Epic Cricket - Real 3D Game : com.moonglabs.epiccricket
+Cricket Coach: Real Manager 25 : com.vandelay.cricketManager
+World Cricket Premier League : com.zapak.world.cricket.premier.league.real.t20.champions
+King Of Cricket Games : cricketgames.cricket.games.real.stick.league.world.hitwicket.free.offline
+Champions Cricket League™CCL25 : com.championscricketleague.ccl24
+Smash Cricket : com.moonfrog.cricket
+Cricket World Champions : com.zapak.cricket.t20.test.oneday.worldcup83
