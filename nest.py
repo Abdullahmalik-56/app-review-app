@@ -1,36 +1,23 @@
 from google_play_scraper import reviews, app, search, Sort
+import torch
+from transformers import pipelines
 
 keyword = ['cricket', 'top cricket games', 'best cricket games']
 # Get apps from Google Play
-def get_app_title():
+def search_apps_by_keywords():
     all_apps = []
     for key in keyword:
-        app_names = search(key, country='us', lang='en')
+        app_names = search(key, country='us', lang='en',n_hits=30)
         all_apps.extend(app_names)
     return all_apps
 
 # Write app titles and IDs to file
-def app_name_title(apps):
+def save_app_list(apps):
     with open("new.txt", "w") as f:
         for app_info in apps:
             f.write(f"{app_info['title']} : {app_info['appId']}\n")
-
-# Read the file and extract app IDs and titles
-def extract_name_title():
-    app_ids = []
-    app_titles = []
-    with open("new.txt", "r") as f:
-        for line in f:
-            if ":" in line:
-                idx = line.rfind(":")
-                title = line[:idx].strip()
-                app_id = line[idx + 1:].strip()
-                app_titles.append(title)
-                app_ids.append(app_id)
-    return app_ids, app_titles
-
 # Get reviews of apps
-def get_reviews(app_ids):
+def fetch_reviews (app_ids):
     all_reviews = []
     for app_id in app_ids:
         result, _ = reviews(app_id, country='us', lang='en', sort=Sort.NEWEST, count=100)
@@ -38,7 +25,7 @@ def get_reviews(app_ids):
     return all_reviews
 
 # Write reviews to file
-def review_file(app_titles, all_reviews):
+def save_reviews (app_titles, all_reviews):
     with open("reviews.txt", "w") as f:
         for name in app_titles:
             f.write(f"--------------------------------------- {name} ---------------------------------------\n")
@@ -48,7 +35,7 @@ def review_file(app_titles, all_reviews):
                     f.write(f"{k}: {v}\n")
 
 # Get details of apps
-def get_app_details(app_ids):
+def fetch_app_details (app_ids):
     app_details = []
     for app_id in app_ids:
         result = app(app_id, country='us', lang='en')
@@ -56,20 +43,40 @@ def get_app_details(app_ids):
     return app_details
 
 # Write app details to file
-def get_details_file(app_titles, app_details):
+def save_app_details (app_titles, app_details):
     with open("details.txt", "w") as f:
         for name, details in zip(app_titles, app_details):
-            f.write(f"--------------------------------------- {name} ---------------------------------------\n")
+            f.write(f"--------------------------------------- {name}----------------------------------\n")
             for k, v in details.items():
                 f.write(f"{k} : {v}\n")
-#Get reply percentile
-def reply_rate(app_ids):
-    reply= []
-    reply_data=get_reviews(app_ids)
+# Summarize reply content
+def summarize_reply_content(app_titles):
+    reply_data = fetch_reviews(app_ids) 
+
+    names=[]
+    rep=[]
+
+    for app_name in app_titles:
+        names.append(app_name)
     for reply_info in reply_data:
         for k,v in reply_info.items():
-            if k in ['replyContent' ,'repliedAt']:reply.append(v)
-    return reply
+            if k in ['content']:
+                rep.append(v)
+    return dict(zip(names,rep))
+
+
+    #pipe=pipelines.pipeline("summarization", model="Falconsai/text_summarization")
+    #reply_summary = pipe(rep_content, max_length=100, min_length=30, do_sample=False)
+    
+                
+#Get reply percentile
+def rextract_reply_data(app_ids):
+    reply= []
+    reply_data=fetch_reviews(app_ids)
+    for reply_info in reply_data:
+        for k,v in reply_info.items():
+            if k in ['content']:reply.append(v)
+    
                 
                 
     
@@ -78,14 +85,19 @@ def reply_rate(app_ids):
 
 # Main driver
 if __name__ == "__main__":
-    all_apps = get_app_title()
-    app_name_title(all_apps)
+    all_apps = search_apps_by_keywords()
+    save_app_list(all_apps)
 
-    app_ids, app_titles = extract_name_title()
-    all_reviews = get_reviews(app_ids)
-    review_file(app_titles, all_reviews)
+    app_ids, app_titles = zip(*[(app['appId'], app['title']) for app in all_apps])
+    
+    all_reviews = fetch_reviews (app_ids)
+    save_reviews (app_titles, all_reviews)
 
-    app_details = get_app_details(app_ids)
-    get_details_file(app_titles, app_details)
+    app_details = fetch_app_details(app_ids)
+    save_app_details (app_titles, app_details)
+    print (rextract_reply_data(app_ids))
 
-    print(reply_rate(app_ids))
+    for k,v in summarize_reply_content(app_titles).items():
+        print(f"{k} : {v}")
+
+    print("Data extraction completed successfully.")     
