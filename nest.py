@@ -2,12 +2,12 @@ from google_play_scraper import reviews, app, search, Sort
 import torch
 from transformers import pipelines
 
-keyword = ['cricket', 'top cricket games', 'best cricket games']
+keyword = ['tv channel mobile', 'Tv streaming', 'live tv']
 # Get apps from Google Play
 def search_apps_by_keywords():
     all_apps = []
     for key in keyword:
-        app_names = search(key, country='us', lang='en',n_hits=30)
+        app_names = search(key, country='us', lang='en')
         all_apps.extend(app_names)
     return all_apps
 
@@ -17,11 +17,18 @@ def save_app_list(apps):
         for app_info in apps:
             f.write(f"{app_info['title']} : {app_info['appId']}\n")
 # Get reviews of apps
-def fetch_reviews (app_ids):
-    all_reviews = []
-    for app_id in app_ids:
+def fetch_reviews (app_ids,app_titles):
+    all_reviews = {}
+
+    for app_id, app_title in zip(app_ids, app_titles):
         result, _ = reviews(app_id, country='us', lang='en', sort=Sort.NEWEST, count=100)
-        all_reviews.extend(result)
+        
+        # Extract only the 'content' from each review
+        contents = [review['content'] for review in result if 'content' in review]
+
+        # Store list of review contents under the app's title
+        all_reviews[app_title] = contents
+
     return all_reviews
 
 # Write reviews to file
@@ -58,10 +65,10 @@ def summarize_reply_content(app_titles):
 
     for app_name in app_titles:
         names.append(app_name)
-    for reply_info in reply_data:
-        for k,v in reply_info.items():
-            if k in ['content']:
-                rep.append(v)
+        for reply_info in reply_data:
+            for k,v in reply_info.items():
+                if k in ['content']:
+                    rep.append(v)
     return dict(zip(names,rep))
 
 
@@ -70,12 +77,12 @@ def summarize_reply_content(app_titles):
     
                 
 #Get reply percentile
-def rextract_reply_data(app_ids):
-    reply= []
-    reply_data=fetch_reviews(app_ids)
-    for reply_info in reply_data:
-        for k,v in reply_info.items():
-            if k in ['content']:reply.append(v)
+#def rextract_reply_data(app_ids):
+ ##
+ #   reply_data=fetch_reviews(app_ids)
+  #  for reply_info in reply_data:
+   #     for k,v in reply_info.items():
+    #        if k in ['content']:reply.append(v)
     
                 
                 
@@ -86,18 +93,21 @@ def rextract_reply_data(app_ids):
 # Main driver
 if __name__ == "__main__":
     all_apps = search_apps_by_keywords()
-    save_app_list(all_apps)
+    #save_app_list(all_apps)
 
     app_ids, app_titles = zip(*[(app['appId'], app['title']) for app in all_apps])
     
-    all_reviews = fetch_reviews (app_ids)
-    save_reviews (app_titles, all_reviews)
+    #all_reviews = fetch_reviews (app_ids,app_titles)
+    #save_reviews (app_titles, all_reviews)
 
-    app_details = fetch_app_details(app_ids)
-    save_app_details (app_titles, app_details)
-    print (rextract_reply_data(app_ids))
+    #app_details = fetch_app_details(app_ids)
+    #save_app_details (app_titles, app_details)
+    #print (rextract_reply_data(app_ids))
 
-    for k,v in summarize_reply_content(app_titles).items():
+    #for k,v in summarize_reply_content(app_titles).items():
+     #   print(f"{k} : {v}")
+
+    azaaaaaab=fetch_reviews (app_ids,app_titles)
+    for k,v in azaaaaaab.items():
         print(f"{k} : {v}")
 
-    print("Data extraction completed successfully.")     
